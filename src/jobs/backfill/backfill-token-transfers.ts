@@ -4,7 +4,7 @@ import { Queue, QueueScheduler, Worker } from "bullmq";
 import { randomUUID } from "crypto";
 
 import { logger } from "@/common/logger";
-import { redis, redisDuplicate } from "@/common/redis";
+import { redis } from "@/common/redis";
 import { config } from "@/config/index";
 import * as syncEventsUtils from "@/events-sync/utils";
 import { TransactionParser } from '../../transaction-parser/transaction-parser';

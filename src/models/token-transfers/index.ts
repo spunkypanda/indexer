@@ -31,7 +31,6 @@ export const saveTokenTransfers = async (tokenTransfers: TokenTransfer[]) => {
         "address",
         "block",
         "block_hash",
-        "tx_hash",
         "tx_index",
         "log_index",
       ],
@@ -57,7 +56,11 @@ export const saveTokenTransfers = async (tokenTransfers: TokenTransfer[]) => {
           "from",
           "to",
           "value",
-          "address"
+          "address",
+          "block",
+          "block_hash",
+          "tx_index",
+          "log_index"
         ) VALUES ${pgp.helpers.values(tokenTransferValues, columns)}
         ON CONFLICT DO NOTHING
       `
