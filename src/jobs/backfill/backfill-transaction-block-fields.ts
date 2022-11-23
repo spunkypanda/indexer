@@ -55,11 +55,15 @@ if (config.doBackgroundWork) {
         if (!block_timestamp) {
           const tx = await baseProvider.getTransaction(fromBuffer(hash));
           if (tx) {
-            values.push({
-              hash,
-              block_number: tx.blockNumber!,
-              block_timestamp: (await syncEventsUtils.fetchBlock(tx.blockNumber!)).timestamp,
-            });
+            const blockDetails = await syncEventsUtils.fetchBlock(tx.blockNumber!);
+            const blockTimestamp = blockDetails?.timestamp;
+            if (blockTimestamp) {
+              values.push({
+                hash,
+                block_number: tx.blockNumber!,
+                block_timestamp: blockTimestamp,
+              });
+            }
           }
         }
       }

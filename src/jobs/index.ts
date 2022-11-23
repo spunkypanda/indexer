@@ -97,6 +97,8 @@ import * as resyncAttributeValueCounts from "@/jobs/update-attribute/resync-attr
 
 import * as backfillFixOpenSeaOrders from "@/jobs/backfill/backfill-fix-opensea-realtime-asks";
 
+import * as backfillTokenTransfers from "@/jobs/backfill/backfill-token-transfers";
+
 export const allJobQueues = [
   fixActivitiesMissingCollection.queue,
   processActivityEvent.queue,
@@ -168,4 +170,6 @@ export const allJobQueues = [
   resyncAttributeValueCounts.queue,
 
   backfillFixOpenSeaOrders.queue,
+
+  backfillTokenTransfers.queue,
 ];

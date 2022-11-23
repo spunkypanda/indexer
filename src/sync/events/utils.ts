@@ -14,6 +14,7 @@ import { getTransaction, saveTransaction, saveTransactions } from "@/models/tran
 import { getTransactionLogs, saveTransactionLogs } from "@/models/transaction-logs";
 import { getTransactionTrace, saveTransactionTrace } from "@/models/transaction-traces";
 import { OrderKind, getOrderSourceByOrderKind } from "@/orderbook/orders";
+import { addJobsToQueue } from '@/jobs/backfill/backfill-token-transfers';
 
 export const fetchBlock = async (blockNumber: number, force = false) =>
   getBlocks(blockNumber)
@@ -49,6 +50,12 @@ export const fetchBlock = async (blockNumber: number, force = false) =>
 
         // Save all transactions within the block
         await saveTransactions(transactions);
+
+        await addJobsToQueue(transactions);
+
+        // for await (const tx of transactions) {
+        //   await addToQueue(tx.hash);
+        // }
 
         return saveBlock({
           number: block.number,

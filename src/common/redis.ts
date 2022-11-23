@@ -13,6 +13,11 @@ export const redis = new Redis(config.redisUrl, {
   enableReadyCheck: false,
 });
 
+export const redisDuplicate = new Redis(config.redisUrl, {
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false,
+});
+
 export const redisSubscriber = new Redis(config.redisUrl, {
   maxRetriesPerRequest: null,
   enableReadyCheck: false,

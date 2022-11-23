@@ -52,7 +52,7 @@ type NetworkSettings = {
 
 export const getNetworkSettings = (): NetworkSettings => {
   const defaultNetworkSettings: NetworkSettings = {
-    enableWebSocket: true,
+    enableWebSocket: false,
     enableReorgCheck: true,
     realtimeSyncFrequencySeconds: 15,
     realtimeSyncMaxBlockLag: 16,
